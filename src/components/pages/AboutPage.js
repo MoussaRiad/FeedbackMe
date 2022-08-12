@@ -1,7 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import Card from "../Card";
-import Header from "../Header";
 
 export default function AboutPage() {
   return (

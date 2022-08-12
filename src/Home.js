@@ -1,8 +1,4 @@
 import React from 'react'
-import { FaQuestion } from 'react-icons/fa'
-import Card from './components/Card'
-import Header from './components/Header'
-import Icon from './components/Icon'
 import Main from './components/Main'
 
 export default function Home() {
