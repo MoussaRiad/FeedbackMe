@@ -4,7 +4,7 @@ export default function Spinner() {
   return (
     <>
       <img className="img-loading" src={spinner} alt="Loading ..." />
-      <h3>Loading</h3>
+      <h1 style={{'color':'white'}}>Loading</h1>
     </>
   );
 }

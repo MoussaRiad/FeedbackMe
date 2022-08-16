@@ -18,7 +18,7 @@ export const FeedbackProvider = ({ children }) => {
     console.log('response ===',response);
     console.log('data === ',data);
     setFeedback(data);
-    setIsLoading(false)
+    // setIsLoading(false)
   };
 
   useEffect(() => {
