@@ -1,7 +1,10 @@
-import React from 'react'
-import spinner from '../assets/loading_1.gif'
+import React from "react";
+import spinner from "../assets/loading_1.gif";
 export default function Spinner() {
   return (
-    <img className='img-loading' src={spinner} alt='Loading ...'/>
-  )
+    <>
+      <img className="img-loading" src={spinner} alt="Loading ..." />
+      <h3>Loading</h3>
+    </>
+  );
 }
