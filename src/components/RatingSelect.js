@@ -6,8 +6,9 @@ export default function RatingSelect({select}) {
 
   const [selected, setSelected] = useState(2);
   useEffect(() => {
-    console.log('ratin ::: ',Math.round(feedbackEdit.item.rating))
+    console.log('rating ::: ',Math.round(feedbackEdit.item.rating))
     if(feedbackEdit.enabled===true) setSelected(Math.round(feedbackEdit.item.rating))
+    else setSelected(2)
   }, [feedbackEdit])
   
   const handleClick=(e)=>{

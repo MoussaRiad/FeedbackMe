@@ -3,9 +3,10 @@ import FeedbackContext from "../context/FeedbackProvider";
 import Button from "./Button";
 import Card from "./Card";
 import RatingSelect from "./RatingSelect";
-
+import { v4 as uuidv4 } from "uuid";
 export default function RateForm() {
-  const {addFeedBack,feedbackEdit,updateFeedback} = useContext(FeedbackContext)
+  const { addFeedBack, feedbackEdit, updateFeedback } =
+    useContext(FeedbackContext);
 
   const [text, setText] = useState("");
   const [rating, setRating] = useState(0);
@@ -13,56 +14,60 @@ export default function RateForm() {
   const [message, setMessage] = useState("");
 
   useEffect(() => {
-    console.log(feedbackEdit)
-    if(feedbackEdit.enabled===true){
-      console.log('edit mode')
-      setDisable(false)
-      setText(feedbackEdit.item.text)
-      setRating(feedbackEdit.item.rating)
+    console.log(feedbackEdit);
+    if (feedbackEdit.enabled === true) {
+      console.log("edit mode");
+      setDisable(false);
+      setText(feedbackEdit.item.text);
+      setRating(feedbackEdit.item.rating);
     }
-    
-  }, [feedbackEdit])
-  
+  }, [feedbackEdit]);
+
   const handleReviewChange = (e) => {
-    if(text=== ''){
-        setMessage(null)
-    }  
-    else if (text && text.trim().length <= 9) {
+    if (text === "") {
+      setMessage(null);
+    } else if (text && text.trim().length <= 9) {
       setMessage("You must enter at least 10 characters");
-      setDisable(true)
+      setDisable(true);
     } else if (text) {
-    //   setText(e.target.value);
-      setMessage(null)
+      //   setText(e.target.value);
+      setMessage(null);
       setMessage("Perfect ! You can now send the review");
-      setDisable(false)
-      
+      setDisable(false);
     }
     // else{
     //     setMessage(null)
     // }
     setText(e.target.value);
-    console.log(e.target.value)
+    console.log(e.target.value);
   };
-  const handleSubmit =(e)=>{
-      e.preventDefault()
-      if(text.trim().length >10){
-          const newFeedBack={
-              text,
-              rating,
-          };
-        //   newFeedBack.id=
-        if(feedbackEdit.enabled===true){
-          updateFeedback(feedbackEdit.item.id,newFeedBack)
-        }
-        else addFeedBack(newFeedBack)
-        console.log(newFeedBack)
+  const handleSubmit = (e) => {
+    console.log('submit start')
+    e.preventDefault();
+    if (text.trim().length > 10) {
+      const newFeedBack = {
+        text,
+        rating,
+      };
+      // console.log('id item :::',uuidv4())
+      console.log('submit item :::',newFeedBack)
+      if (feedbackEdit.enabled === true) {
+        updateFeedback(feedbackEdit.item.id, newFeedBack);
+        setDisable(true);
+        setText("");
+        // setRating();
+      } else {
+        newFeedBack.id = uuidv4();
+        addFeedBack(newFeedBack);
       }
-  }
+      console.log(newFeedBack);
+    }
+  };
   return (
     <Card>
       <form onSubmit={handleSubmit}>
         <h1>Rate your service with us</h1>
-        <RatingSelect select={(rating)=>setRating(rating)}/>
+        <RatingSelect select={(rating) => setRating(rating)} />
         <div className="input-group">
           <input
             type="text"
@@ -74,8 +79,10 @@ export default function RateForm() {
             Send
           </Button>
         </div>
-        {isDisabled &&text &&(<div className="msg msg-danger">{message}</div>)}
-        {!isDisabled && text &&(<div className="msg msg-success">{message}</div>)}
+        {isDisabled && text && <div className="msg msg-danger">{message}</div>}
+        {!isDisabled && text && (
+          <div className="msg msg-success">{message}</div>
+        )}
       </form>
     </Card>
   );

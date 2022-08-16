@@ -343,3 +343,13 @@
   /* columns: rgb(2, 12, 70);; */
   transition: ease 0.5s;
 }
+
+
+.img-loading{
+  width: 250px;
+  height: 250px;
+  display: block;
+  padding: 5px;
+  margin-top: 60px;
+  margin-bottom: 60px;
+}
